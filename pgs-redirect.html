@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Getting Location...</title>
+<script>
+function redirectWithLocation(position) {
+var lat = position.coords.latitude;
+var lon = position.coords.longitude;
+
+// Your Form ID
+var formId = "1FAIpQLSeKiFY8S8_17UH26BwPukiCXd6t1a9Ad4AJGvpHfiuI9AfZMw";
+
+// Your single entry ID
+var singleEntry = "entry.705370127";
+
+// Build the combined string
+var combined = lat + ", " + lon;
+
+// Build the URL
+var url = "https://docs.google.com/forms/d/e/" + formId + "/viewform?"
++ singleEntry + "=" + encodeURIComponent(combined);
+
+// Redirect
+window.location.href = url;
+}
+
+function handleError(error) {
+alert("Error getting location: " + error.message);
+}
+
+window.onload = function() {
+if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(redirectWithLocation, handleError);
+} else {
+alert("Geolocation is not supported by this browser.");
+}
+};
+</script>
+</head>
+<body>
+<p>Getting your location, please wait...</p>
+</body>
+</html>
